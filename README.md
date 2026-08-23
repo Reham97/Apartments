@@ -25,8 +25,6 @@ cd Apartments
 ### 3. open your cmd & run this command for dev env
 
 ```bash
-git clone https://github.com/Reham97/Apartments.git
-cd Apartments
 $env:APP_ENV="dev"  
 docker compose up --build
 ```
