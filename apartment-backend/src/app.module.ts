@@ -9,21 +9,24 @@ import { PrismaModule } from './prisma/prisma.module';
 import { ApartmentsModule } from './apartments/apartments.module';
 import { HealthModule } from './health/health.module';
 
+const appEnv = process.env.APP_ENV || 'dev';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: `.env.${process.env.APP_ENV || 'dev'}`,
+      envFilePath: `.env.${appEnv}`,
     }),
 
-    // Serve:
-    // D:\apartment\apartment-backend\uploads
+    // Physical folder:
+    // apartment-backend/uploads
     //
-    // as:
-    // http://localhost:3000/uploads
+    // URL:
+    // dev -> /dev/uploads
+    // sit -> /sit/uploads
     ServeStaticModule.forRoot({
       rootPath: join(process.cwd(), 'uploads'),
-      serveRoot: `/${process.env.APP_ENV || 'dev'}/uploads`,
+      serveRoot: `/${appEnv}/uploads`,
     }),
 
     PrismaModule,
