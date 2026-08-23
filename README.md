@@ -23,8 +23,14 @@ cd Apartments
 ```
 
 ### 3. open your cmd & run this command for dev env
-
+PowerShell
 ```bash
-$env:APP_ENV="dev"  
+$env:APP_ENV="dev"; docker compose up --build
+```
+
+CMD
+```bash
+set APP_ENV=dev
 docker compose up --build
 ```
+
