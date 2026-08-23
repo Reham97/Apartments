@@ -1,6 +1,4 @@
-# Apartment Application
-
-Full-stack Apartment Management Application built with:
+## Full-stack Apartment Management application built with:
 
 - Frontend: Next.js
 - Backend: NestJS
@@ -8,12 +6,24 @@ Full-stack Apartment Management Application built with:
 - ORM: Prisma
 - Containerization: Docker & Docker Compose
 
-## Project Structure
+## Setup
 
-```text
-apartment/
-│
-├── apartment-backend/       # NestJS API
-├── apartment-frontend/      # Next.js application
-├── docker-compose.yml       # Docker services
-└── README.md
+### 1. Install
+- Git
+- Docker Desktop
+
+Make sure Docker Desktop is running before starting the project.
+
+### 2. Clone the Repository
+
+```bash
+git clone https://github.com/Reham97/Apartments.git
+
+cd Apartments
+```
+
+### 3. open your cmd & run this command for dev env
+
+```bash
+docker compose --env-file .env.dev up --build
+```
