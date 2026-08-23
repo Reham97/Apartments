@@ -27,6 +27,5 @@ cd Apartments
 ```bash
 git clone https://github.com/Reham97/Apartments.git
 cd Apartments
-$env:APP_ENV="dev"  
-docker compose up --build
+docker compose --env-file .env.dev up --build
 ```

@@ -7,7 +7,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: apartment_${APP_ENV}
+      POSTGRES_DB: apartment_${APP_ENV:?APP_ENV is required}
 
     ports:
       - "5432:5432"
@@ -16,7 +16,11 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d apartment_${APP_ENV}"]
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U postgres -d apartment_${APP_ENV:?APP_ENV is required}",
+        ]
       interval: 5s
       timeout: 5s
       retries: 10
@@ -32,10 +36,10 @@ services:
         condition: service_healthy
 
     env_file:
-      - ./apartment-backend/.env.${APP_ENV}
+      - ./apartment-backend/.env.${APP_ENV:?APP_ENV is required}
 
     environment:
-      APP_ENV: ${APP_ENV}
+      APP_ENV: ${APP_ENV:?APP_ENV is required}
 
     ports:
       - "3000:3000"
@@ -51,10 +55,10 @@ services:
         condition: service_started
 
     env_file:
-      - ./apartment-frontend/.env.${APP_ENV}
+      - ./apartment-frontend/.env.${APP_ENV:?APP_ENV is required}
 
     environment:
-      APP_ENV: ${APP_ENV}
+      APP_ENV: ${APP_ENV:?APP_ENV is required}
 
     ports:
       - "4200:4200"
